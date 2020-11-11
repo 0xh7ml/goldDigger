@@ -24,3 +24,8 @@ $ ./install.sh
 ```
 $ ./goldDigger target.com
 ```
+##Thanks
+```
+http://xerosecurity.com
+
+```
