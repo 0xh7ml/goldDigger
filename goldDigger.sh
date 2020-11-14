@@ -17,10 +17,10 @@ cat finder.txt amass.txt asset.txt > allsub.txt
 sort -u allsub.txt
 rm finder.txt amass.txt asset.txt
 cat allsub.txt | httpx | tee hosts.txt
-cat hosts.txt | httpx -status-code -mc 200 -o 200.txt
-cat hosts.txt | httpx -status-code -mc 403 -o 403.txt
-cat hosts.txt | httpx -status-code -mc 301 -o 301.txt
-cat hosts.txt | httpx -status-code -mc 400 -o 404.txt
+cat hosts.txt | httpx -status-code | grep 200 | tee 200.txt
+cat hosts.txt | httpx -status-code | grep 301 | tee 301.txt
+cat hosts.txt | httpx -status-code | grep 403 | tee 403.txt
+cat hosts.txt | httpx -status-code | grep 404 | tee 404.txt
 rm allsub.txt
 mkdir domains
 mv 200.txt 403.txt 301.txt domains
@@ -36,4 +36,4 @@ crlfuzz -u "http://$t" -o crlf.txt
 
 #content discovery
 echo "fucking endpoint *,*"
-gobuster dir -u $t -w $HOME/goldDigger/common.txt -s 200,201,202,203,401,402,403 -b 500,404,301 -o fuzz.txt
+gobuster dir -u $t -w $HOME/goldDigger/wordlist.txt -s 200,201,202,203,401,402,403 -b 500,404,301 -o fuzz.txt
