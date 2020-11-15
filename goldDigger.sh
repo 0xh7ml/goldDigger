@@ -30,7 +30,7 @@ subzy -targets 404.txt
 rm 404.txt
 #urls and parameter discover
 echo "digging for parameter"
-gau $t | tee urls.txt
+waybackurls $t | tee urls.txt
 
 crlfuzz -u "http://$t" -o crlf.txt
 
